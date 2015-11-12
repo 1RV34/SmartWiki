@@ -2,18 +2,18 @@
 class SWImport {
 	/**
 	 * Constructor
-	 */ 
+	 */
 	function __construct() {
 		// Empty constructor
 	}
 
 	/**
 	 * Import the SmartWiki links in the menu
-	 * 
+	 *
 	 * @param $showInMenu - Should we add links to the menu
-	 * 
+	 *
 	 * @param $links_category - Links to the categories
-	 * 
+	 *
 	 * @return Array of Title objects
 	 */
 	public function importMenu(SWLogger $log, $showInMenu = true, $links_category = array()) {
@@ -54,10 +54,10 @@ class SWImport {
 			if (strrpos($newText, "\n") != strlen($newText) - 1) {
 				$newText .= "\n";
 			}
-	
+
 			# We will now add the links
-			$newText .= 
-				"* " . wfMsgForContent('smartwiki-menu-title') . "\n" . 
+			$newText .=
+				"* " . wfMsgForContent('smartwiki-menu-title') . "\n" .
 				"** Special:" . wfMsgForContent('smartwiki') . " | " . wfMsgForContent('smartwiki') . "\n";
 
 			# We will add the links to categories
@@ -74,7 +74,7 @@ class SWImport {
 
 	/**
 	 * Import a file in the "/import/files/" folder
-	 * 
+	 *
 	 * @param $log - SmartWiki logger
 	 */
 	public function importFile(SWLogger $log) {
@@ -83,7 +83,7 @@ class SWImport {
 
 	/**
 	 * Import a article from a file in the "/import/" folder
-	 * 
+	 *
 	 * @param $namespace_id - The ID of the Namespace we need to import
 	 */
 	public function importNamespace(SWLogger $log, $namespace_id) {
@@ -129,7 +129,7 @@ class SWImport {
 		$file_list = array();
 
 		$iterator = new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator( $dir ), 
+			new RecursiveDirectoryIterator( $dir ),
 			RecursiveIteratorIterator::SELF_FIRST
 		);
 

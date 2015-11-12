@@ -11,9 +11,9 @@ class SWImportController {
 
 	/**
 	 * Do the import of SmartWiki
-	 * 
+	 *
 	 * @param boolean $showInMenu
-	 * 
+	 *
 	 * @return HTML output code
 	 */
 	public function execute($showInMenu = true) {
@@ -34,7 +34,7 @@ class SWImportController {
 		$links_photo	= $importer->importFile($log);						# Install the files
 		$links_main		= $importer->importNamespace($log, NS_MAIN);			# Install the SmartWiki main pages
 		$links_help		= $importer->importNamespace($log, NS_HELP);			# Install the SmartWiki help pages
-		$links_property	= $importer->importNamespace($log, SMW_NS_PROPERTY);	# Install the SmartWiki properties 
+		$links_property	= $importer->importNamespace($log, SMW_NS_PROPERTY);	# Install the SmartWiki properties
 		$links_template	= $importer->importNamespace($log, NS_TEMPLATE);		# Install the SmartWiki templates
 		$links_form		= $importer->importNamespace($log, SF_NS_FORM);		# Install the SmartWiki forms
 		$links_category	= $importer->importNamespace($log, NS_CATEGORY);		# Install the SmartWiki categories
