@@ -84,16 +84,18 @@ class SWImport {
 	/**
 	 * Import a article from a file in the "/import/" folder
 	 *
-	 * @param $namespace_id - The ID of the Namespace we need to import
+	 * @param SWLogger $log
+	 * @param string $import Directory name to import from.
+	 * @param int $namespace_id The ID of the Namespace we need to import
 	 */
-	public function importNamespace(SWLogger $log, $namespace_id) {
+	public function importNamespace(SWLogger $log, $import, $namespace_id) {
 
 		if ( MWNamespace::exists( $namespace_id ) || ($namespace_id == NS_MAIN)) {
 			# Get the name of the namespace
 			$namespace_name = $namespace_id == NS_MAIN ? 'Main' : MWNamespace::getCanonicalName( $namespace_id );
 
-			# Get the files from the Namespace folder in "/import/"
-			$dir = dirname( __FILE__ ) . '/../../imports/' . $namespace_name . '/';
+			# Get the files from the import folder in "imports"
+			$dir = dirname( __FILE__ ) . '/../../imports/' . $import . '/';
 			$file_list	= $this->readDir($dir);
 			$file_count	= count($file_list);
 

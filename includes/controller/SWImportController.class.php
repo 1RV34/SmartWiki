@@ -32,12 +32,12 @@ class SWImportController {
 
 		# Call the functions to import everything, store the links
 		$links_photo	= $importer->importFile($log);						# Install the files
-		$links_main		= $importer->importNamespace($log, NS_MAIN);			# Install the SmartWiki main pages
-		$links_help		= $importer->importNamespace($log, NS_HELP);			# Install the SmartWiki help pages
-		$links_property	= $importer->importNamespace($log, SMW_NS_PROPERTY);	# Install the SmartWiki properties
-		$links_template	= $importer->importNamespace($log, NS_TEMPLATE);		# Install the SmartWiki templates
-		$links_form		= $importer->importNamespace($log, SF_NS_FORM);		# Install the SmartWiki forms
-		$links_category	= $importer->importNamespace($log, NS_CATEGORY);		# Install the SmartWiki categories
+		$links_main		= $importer->importNamespace($log, 'Main', NS_MAIN);			# Install the SmartWiki main pages
+		$links_help		= $importer->importNamespace($log, 'Help', NS_HELP);			# Install the SmartWiki help pages
+		$links_property	= $importer->importNamespace($log, 'Property', SMW_NS_PROPERTY);	# Install the SmartWiki properties
+		$links_template	= $importer->importNamespace($log, 'Template', NS_TEMPLATE);		# Install the SmartWiki templates
+		$links_form		= $importer->importNamespace($log, 'Form', SF_NS_FORM);		# Install the SmartWiki forms
+		$links_category	= $importer->importNamespace($log, 'Category', NS_CATEGORY);		# Install the SmartWiki categories
 		$links_menu 	= $importer->importMenu($log, $showInMenu, $links_category);
 
 		# Output the import message and display all the links and a link to go back
