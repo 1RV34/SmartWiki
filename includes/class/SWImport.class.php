@@ -2,18 +2,18 @@
 class SWImport {
 	/**
 	 * Constructor
-	 */ 
+	 */
 	function __construct() {
 		// Empty constructor
 	}
 
 	/**
 	 * Import the SmartWiki links in the menu
-	 * 
+	 *
 	 * @param $showInMenu - Should we add links to the menu
-	 * 
+	 *
 	 * @param $links_category - Links to the categories
-	 * 
+	 *
 	 * @return Array of Title objects
 	 */
 	public function importMenu(SWLogger $log, $showInMenu = true, $links_category = array()) {
@@ -54,10 +54,10 @@ class SWImport {
 			if (strrpos($newText, "\n") != strlen($newText) - 1) {
 				$newText .= "\n";
 			}
-	
+
 			# We will now add the links
-			$newText .= 
-				"* " . wfMsgForContent('smartwiki-menu-title') . "\n" . 
+			$newText .=
+				"* " . wfMsgForContent('smartwiki-menu-title') . "\n" .
 				"** Special:" . wfMsgForContent('smartwiki') . " | " . wfMsgForContent('smartwiki') . "\n";
 
 			# We will add the links to categories
@@ -74,7 +74,7 @@ class SWImport {
 
 	/**
 	 * Import a file in the "/import/files/" folder
-	 * 
+	 *
 	 * @param $log - SmartWiki logger
 	 */
 	public function importFile(SWLogger $log) {
@@ -83,17 +83,19 @@ class SWImport {
 
 	/**
 	 * Import a article from a file in the "/import/" folder
-	 * 
-	 * @param $namespace_id - The ID of the Namespace we need to import
+	 *
+	 * @param SWLogger $log
+	 * @param string $import Directory name to import from.
+	 * @param int $namespace_id The ID of the Namespace we need to import
 	 */
-	public function importNamespace(SWLogger $log, $namespace_id) {
+	public function importNamespace(SWLogger $log, $import, $namespace_id) {
 
 		if ( MWNamespace::exists( $namespace_id ) || ($namespace_id == NS_MAIN)) {
 			# Get the name of the namespace
 			$namespace_name = $namespace_id == NS_MAIN ? 'Main' : MWNamespace::getCanonicalName( $namespace_id );
 
-			# Get the files from the Namespace folder in "/import/"
-			$dir = dirname( __FILE__ ) . '/../../imports/' . $namespace_name . '/';
+			# Get the files from the import folder in "imports"
+			$dir = dirname( __FILE__ ) . '/../../imports/' . $import . '/';
 			$file_list	= $this->readDir($dir);
 			$file_count	= count($file_list);
 
@@ -129,7 +131,7 @@ class SWImport {
 		$file_list = array();
 
 		$iterator = new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator( $dir ), 
+			new RecursiveDirectoryIterator( $dir ),
 			RecursiveIteratorIterator::SELF_FIRST
 		);
 
